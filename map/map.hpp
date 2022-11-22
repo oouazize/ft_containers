@@ -54,7 +54,7 @@ namespace ft
                 bool operator()(const value_type &x, const value_type &y) const
                 {
                     return comp(x.first, y.first);
-            }
+                }
         };
 
         explicit map(const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type()) : _comp_key(comp), _alloc(alloc) {}

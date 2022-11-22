@@ -139,7 +139,7 @@
                         return UpperBound(TmpRoot->left, _key);
                 while (!ft::compare<Key, Key, Compare>(_key, TmpRoot->_pair->first) && TmpRoot != root)
                     TmpRoot = getParent(root, TmpRoot->_pair->first);
-                if (TmpRoot == root)
+                if (TmpRoot == root && !ft::compare<Key, Key, Compare>(_key, TmpRoot->_pair->first))
                     return NULL;
                 return TmpRoot;
             }
