@@ -134,7 +134,6 @@ namespace ft {
                     for (size_type i = 0; i < _m_size; ++i)
                         tmp.construct(tmp_bg + i, _m_begin[i]);
                     clear();
-                    _m_size = 0;
                 }
                 if (_m_capacity) _m_alloc.deallocate(_m_begin, _m_capacity);
                 _m_capacity = 0;
@@ -190,8 +189,8 @@ namespace ft {
                 _m_size = n;
             }
 
-            template <class InputIterator> void assign (InputIterator first, InputIterator last,
-                typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = 0) {
+            template <class Iter> void assign (Iter first, Iter last,
+                typename ft::enable_if<!ft::is_integral<Iter>::value && !std::__is_input_iterator<Iter>::value, Iter>::type* = 0) {
                 vector tmp;
                 for (; first != last; first++)
                     tmp.push_back(*first);
@@ -200,6 +199,13 @@ namespace ft {
                 if (n > _m_capacity) reserve(n);
                 for (size_type i = 0; i < n; i++, _m_size++)
                     _m_alloc.construct(_m_begin + i, tmp[i]);
+            }
+
+            template <class InputIterator> void assign (InputIterator first, InputIterator last,
+                    typename ft::enable_if<std::__is_input_iterator<InputIterator>::value, InputIterator>::type* = 0) {
+                clear();
+                for (; first != last; first++)
+                    push_back(*first);
             }
 
             void push_back (const value_type& val) {

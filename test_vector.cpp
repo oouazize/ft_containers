@@ -6,7 +6,7 @@
 /*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 17:54:36 by oouazize          #+#    #+#             */
-/*   Updated: 2022/11/22 11:45:01 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:48:09 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ void PRINT_MSG(std::ofstream& file, const char* str)
 template <typename Vect>
 void CHECK_AND_PRINT_ALL(std::ofstream& file, Vect& vec)
 {
-    if (vec.capacity() < vec.size()) file << "Capacity is smaller than size" << std::endl;
-    else file << "Capacity OK" << std::endl;
+    file << "Capacity: " << vec.capacity() << std::endl;
     file << "SIZE: " << vec.size() << std::endl;
     file << "\nVector content:\n";
     for (typename Vect::iterator it = vec.begin(); it != vec.end(); ++it)
