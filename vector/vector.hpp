@@ -344,13 +344,6 @@ namespace ft {
                 swapT(_m_alloc, x._m_alloc);
             }
 
-            template <typename X>
-            void swapT(X& my_ptr, X& ptr) {
-                X tmp = my_ptr;
-                my_ptr = ptr;
-                ptr = tmp;
-            }
-
             template <class I, class alloc> friend void swap (vector<I,alloc>& x, vector<I,alloc>& y) { x.swap(y); }
 
             allocator_type get_allocator() const {return _m_alloc;}
@@ -359,5 +352,11 @@ namespace ft {
             pointer                               _m_begin;
             size_type                             _m_size;
             size_type                             _m_capacity;
+            template <typename X>
+            void swapT(X& my_ptr, X& ptr) {
+                X tmp = my_ptr;
+                my_ptr = ptr;
+                ptr = tmp;
+            }
     };
 }
