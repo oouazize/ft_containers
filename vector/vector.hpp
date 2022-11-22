@@ -198,7 +198,7 @@ namespace ft {
                 size_type n;
                 n = tmp.size();
                 clear();
-                if (n > _m_capacity) reserve(n);
+                if (n > _m_capacity) reserve(tmp.capacity());
                 for (size_type i = 0; i < n; i++, _m_size++)
                     _m_alloc.construct(_m_begin + i, tmp[i]);
             }
@@ -318,6 +318,7 @@ namespace ft {
                     size_type n = first - begin();
                     vector vect2(begin(), first);
                     vector vect3(last, end());
+                    vect2.reserve(_m_capacity);
                     swap(vect2);
                     insert(end(), vect3.begin(), vect3.end());
                     p = _m_begin + n;

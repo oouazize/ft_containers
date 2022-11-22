@@ -6,7 +6,7 @@
 /*   By: oouazize <oouazize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 17:54:36 by oouazize          #+#    #+#             */
-/*   Updated: 2022/11/21 19:30:04 by oouazize         ###   ########.fr       */
+/*   Updated: 2022/11/22 10:07:52 by oouazize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void CHECK_AND_PRINT_ALL(std::ofstream& file, Vect& vec)
 {
     if (vec.capacity() < vec.size()) file << "Capacity is smaller than size" << std::endl;
     else file << "Capacity OK" << std::endl;
+    file << "Capacity: " << vec.capacity() << std::endl;
     file << "SIZE: " << vec.size() << std::endl;
     file << "\nVector content:\n";
     for (typename Vect::iterator it = vec.begin(); it != vec.end(); ++it)
@@ -637,7 +638,7 @@ int main()
         mystrvector::iterator my_it = my_v.erase(my_v.begin() + 3, my_v.begin() + 16);
 
         PRINT_LINE(STDFILE, "It:", *it);
-        PRINT_LINE(FTFILE, "It:", *it);
+        PRINT_LINE(FTFILE, "It:", *my_it);
         CHECK_ALL(STDFILE, v, FTFILE, my_v);
 
         it = v.erase(v.begin() + 9);
