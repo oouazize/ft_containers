@@ -190,7 +190,7 @@ namespace ft {
             }
 
             template <class Iter> void assign (Iter first, Iter last,
-                typename ft::enable_if<!ft::is_integral<Iter>::value && !std::__is_input_iterator<Iter>::value, Iter>::type* = 0) {
+                typename ft::enable_if<!ft::is_integral<Iter>::value && std::__is_random_access_iterator<Iter>::value, Iter>::type* = 0) {
                 vector tmp;
                 for (; first != last; first++)
                     tmp.push_back(*first);
@@ -202,7 +202,7 @@ namespace ft {
             }
 
             template <class InputIterator> void assign (InputIterator first, InputIterator last,
-                    typename ft::enable_if<std::__is_input_iterator<InputIterator>::value, InputIterator>::type* = 0) {
+                    typename ft::enable_if<std::__is_input_iterator<InputIterator>::value && !std::__is_random_access_iterator<InputIterator>::value, InputIterator>::type* = 0) {
                 clear();
                 for (; first != last; first++)
                     push_back(*first);
