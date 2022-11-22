@@ -57,10 +57,10 @@ namespace ft {
 
             //-v --------________ITERATORS:_________-------- //
 
-            iterator begin() {return iterator(&(*_m_begin));}
+            iterator begin() {return iterator(_m_begin);}
             const_iterator begin() const {return const_iterator(_m_begin);}
 
-            iterator end() {return iterator(&(_m_begin[_m_size]));}
+            iterator end() {return iterator(_m_begin + _m_size);}
             const_iterator end() const {return const_iterator(_m_begin + _m_size);}
 
             reverse_iterator rbegin() {return reverse_iterator(end());}
@@ -195,10 +195,9 @@ namespace ft {
                 vector tmp;
                 for (; first != last; first++)
                     tmp.push_back(*first);
-                size_type n;
-                n = tmp.size();
+                size_type n = tmp.size();
                 clear();
-                if (n > _m_capacity) reserve(tmp.capacity());
+                if (n > _m_capacity) reserve(n);
                 for (size_type i = 0; i < n; i++, _m_size++)
                     _m_alloc.construct(_m_begin + i, tmp[i]);
             }
